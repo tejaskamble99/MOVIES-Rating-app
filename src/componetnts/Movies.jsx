@@ -26,7 +26,7 @@ function Movies(props) {
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=0c5f44f824c57ed3352645c1022dabcd&language=en-US&page=${currentPage}`)
       .then(function (res) {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setMovies(res.data.results);
       });
   }, [currentPage]);
@@ -38,7 +38,8 @@ function Movies(props) {
       </div>
       <div className='flex flex-row flex-wrap justify-around gap-8'>
         {movies.map((movieObj)=>{
-          return <MoviesCart key={movieObj.id} poster_path={movieObj.poster_path} watchList={watchList} name={movieObj.original_title} handleAddList={handeladdList} handelremoveList={handelremoveList} movieObj={movieObj} />
+          return  <MoviesCart key={movieObj.id} poster_path={movieObj.poster_path} watchList={watchList} name={movieObj.original_title} handleAddList={handeladdList} handelremoveList={handelremoveList} movieObj={movieObj} />;
+
         })}
       </div>
       <Paging currentPage={currentPage} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import WatchList from './WatchList';
+
 
 function MoviesCart(props) {
   const { movieObj,handelremoveList, poster_path, name, handleAddList, watchList } = props;

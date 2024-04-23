@@ -4,8 +4,10 @@ import axios from 'axios';
 import Paging from './Paging';
 
 function Movies(props) {
+  const {handeladdList, handelremoveList ,watchList} = props;
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {
@@ -36,7 +38,7 @@ function Movies(props) {
       </div>
       <div className='flex flex-row flex-wrap justify-around gap-8'>
         {movies.map((movieObj)=>{
-          return <MoviesCart key={movieObj.id} poster_path={movieObj.poster_path} name={movieObj.original_title} />
+          return <MoviesCart key={movieObj.id} poster_path={movieObj.poster_path} watchList={watchList} name={movieObj.original_title} handleAddList={handeladdList} handelremoveList={handelremoveList} movieObj={movieObj} />
         })}
       </div>
       <Paging currentPage={currentPage} goToNextPage={goToNextPage} goToPreviousPage={goToPreviousPage} />

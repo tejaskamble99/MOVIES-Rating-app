@@ -9,6 +9,23 @@ import Banner from './componetnts/Banner'
 
 
 function App() {
+  let [watchList, setwatchList] = useState([]);
+  let handeladdList =(movieObj)=>{
+    let newWatchlist = [...watchList, movieObj]
+    setwatchList(newWatchlist)
+    console.log(newWatchlist)
+
+  }
+
+  let handelremoveList = (movieObjToRemove) => {
+    console.log("Removing movie:", movieObjToRemove);
+    let filteredList = watchList.filter((movie) => {
+      return movie.id !== movieObjToRemove.id;
+    });
+    console.log("Filtered list:", filteredList);
+    setwatchList(filteredList);
+  };
+  
   
   return (
     <>
@@ -17,8 +34,8 @@ function App() {
     <Navbar />
     
     <Routes>
-      <Route path='/' element={<><Banner /> <Movies /></>} />
-      <Route path='/watchlist' element={<WatchList />} /> 
+      <Route path='/' element={<><Banner /> <Movies watchList={watchList} handelremoveList={handelremoveList}  handeladdList={handeladdList} /></>} />
+      <Route path='/watchlist' element={<WatchList  />} /> 
     
     
     </Routes>
